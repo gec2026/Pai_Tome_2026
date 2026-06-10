@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensagem dia 06/05/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-top: #f5ede0;
+      --bg-bot: #e8d9c4;
+      --card: #fdf7ee;
+      --text: #2b1f14;
+      --accent: #7a5230;
+      --accent-dark: #4e3220;
+      --muted: #8a7060;
+      --blue-header: #1a4fa0;
+      --gold: #b8883a;
+      --gold-light: #d4a855;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bot) 100%);
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--text);
+      line-height: 1.8;
+      padding: 24px 16px 140px;
+    }
+
+    /* Textura sutil de fundo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%23b8883a' opacity='0.07'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 36px 28px 40px;
+      box-shadow:
+        0 2px 0 var(--gold-light),
+        0 10px 40px rgba(60, 35, 10, 0.18),
+        inset 0 0 0 1px rgba(184, 136, 58, 0.2);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ornamento topo */
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.3rem;
+      letter-spacing: 6px;
+      margin-bottom: 18px;
+      opacity: 0.7;
+    }
+
+    /* Divisor dourado */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 16px auto;
+    }
+
+    h1 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      text-align: center;
+      color: var(--blue-header);
+      line-height: 1.5;
+      margin-top: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .message {
+      margin-top: 28px;
+      white-space: pre-wrap;
+      font-size: 1.18rem;
+      color: var(--text);
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Placeholder visual */
+    .placeholder {
+      text-align: center;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1rem;
+      padding: 30px 0;
+      opacity: 0.7;
+    }
+
+    .note {
+      margin-top: 28px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Barra de controles */
+    .controls {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 14px 20px 20px;
+      background: rgba(245, 237, 224, 0.97);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(184, 136, 58, 0.25);
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      z-index: 100;
+      box-shadow: 0 -4px 20px rgba(60, 35, 10, 0.08);
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+      box-shadow: 0 4px 14px rgba(60, 35, 10, 0.22);
+    }
+
+    button.primary   { background: linear-gradient(135deg, #7a5230, #4e3220); }
+    button.secondary { background: linear-gradient(135deg, #9a7a58, #7a5e42); }
+    button.stop-btn  { background: linear-gradient(135deg, #8b3a2a, #5e2418); }
+
+    button:hover  { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(60, 35, 10, 0.3); }
+    button:active { transform: scale(0.97); opacity: 0.9; }
+
+    /* Botões de velocidade */
+    .speed-controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .speed-btn {
+      border: 2px solid var(--gold);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: none;
+    }
+
+    .speed-btn.active,
+    .speed-btn:hover {
+      background: var(--gold);
+      color: white;
+      box-shadow: 0 2px 8px rgba(184,136,58,0.3);
+    }
+
+    /* Indicador de leitura */
+    /* Indicador de leitura */
+    .reading-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      width: 0%;
+      transition: width 0.4s ease;
+      z-index: 200;
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-bar" id="readingBar"></div>
+
+  <main class="container">
+    <div class="ornament">✦ ✦ ✦</div>
+
+    <h1>Mensagem do Pai Tomé recebida na reunião de Estudos<br>no dia 06/05/2026</h1>
+
+    <div class="divider"></div>
+
+    <h2>Retribuir o mal com o bem<br>Cap XII — item 3</h2>
+
+    <div class="divider"></div>
+
+    <section id="message" class="message"></section>
+
+    <p class="note">Use os botões abaixo para ouvir, pausar ou parar a leitura.</p>
+  </main>
+
+  <div class="controls">
+    <div class="speed-controls">
+      <button class="speed-btn" onclick="setSpeed(0.75, this)">🐢 Lenta</button>
+      <button class="speed-btn active" onclick="setSpeed(0.95, this)">▶ Normal</button>
+      <button class="speed-btn" onclick="setSpeed(1.25, this)">⚡ Rápida</button>
+    </div>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button class="primary"   onclick="playMessage()">▶ Ouvir</button>
+      <button class="secondary" id="pauseBtn" onclick="pauseOrResume()">⏸ Pausar</button>
+      <button class="stop-btn"  onclick="stopMessage()">■ Parar</button>
+    </div>
+  </div>
+
+  <script>
+    const messageText = `
+Paz de nosso Senhor Jesus Cristo para todos os filhos da Terra. 
+Deus vos abençoe e vos dê a fortaleza de pensamento para todos os filhos.
+Veja, filhos, a colaboração bondosa quando o coração se propõe a fazer o bem se estende muito longe. Com o pensamento bendito pode-se alcançar uma imensidão de corações que estão unidos a vocês, não só nesta encarnação, mas em tempos remotos, onde vocês angariaram amigos, mas angariaram também inimigos. E hoje seus inimigos estão reencarnados como familiares, porque Jesus falou para amar uns aos outros, e Jesus não falou para amar os inimigos ou amar os amigos, Jesus mandou amar uns aos outros.
+Você pode pensar que o acaso vai reunindo, em uma reencarnação, um aqui e outro ali, e assim você tem um pai e uma mãe. Mas você já parou para pensar que seu pai também teve um pai e que este pai também teve um pai?
+Você já imaginou o tamanho que fica essa família?
+Pai, a árvore genealógica fica imensa.
+E isso acontece mesmo antes dos tempos de Jesus. E você pode pensar que pouco foi feito desde esse tempo remoto, mas filhos, do tempo remoto até hoje foi feito muito. E os filhos foram criados simples e ignorantes no sentido do conhecimento, e assim tudo começa de pequenino e vai expandindo, como se fosse da infância até a velhice. E isso pode ser comparado a uma criança se desenvolvendo, mas esse desenvolvimento numa encarnação é muito rápido se você comparar esse tempo com a eternidade. Quanto vale?
+Creio que vale um segundo, pai.
+Filhos podem até pensar: "Será que vou viver tanto?"
+Vai sim, filho, porque pense: você criaria algo para depois destruir?
+Deus também não cria para destruir.
+Observe uma planta que você plantou com amor. Você rega, você cuida, ela fica frondosa e você se alimenta dos seus frutos e se beneficia da sua sombra. E isso começou com uma sementinha. E o que se dirá da criatura humana criada por Deus?
+Uma criaturinha que, pela lei do amor, vai se desenvolvendo. E hoje vocês, com o conhecimento do espiritismo — e negro velho alerta isso para o próprio negro velho — hoje você faria coisas que pela sua ignorância foi feito em outros tempos?
+Faria pequenas besteiras que fez no passado?
+Hoje não, pai.
+E o conhecimento vai levando você, filha, a evoluir. E isso não quer dizer que você não vai errar. E olha que negro velho toma muito tombo nesse tentar não errar. E errar é a distância que faz o erro, porque se você sabe fazer, você erra?
+Quando se sabe fazer, não, pai.
+Eh eh... é como se você não soubesse como fazer um grande plantio. O que você busca para poder plantar? Você busca conhecimento e vai plantando, e cada vez que você planta mais, você se aprimora.
+Na vida espiritual é a mesma coisa. Observe que um médium começa com dificuldade, e essa dificuldade traz a vontade de conhecer. Então, se o médium tem vontade de servir, se essa vontade for muito grande no coração dele, ele ganha tanto que o encarnado e o desencarnado se tornam um só pensamento.
+Você tem notado isso, filha? Que você pensa hoje diferente de outros tempos? Isso é a mediunidade. O conhecimento nada mais é do que absorver algo para você, e esse algo é o conhecimento, e tem como nome mediunidade. E todos, indistintamente, usam desse recurso, às vezes sem saber. Porque às vezes um não tem conhecimento, mas quando um filhinho amado desencarna e a mãe pensa que perdeu, no íntimo dela, bem lá pertinho do coração, ela tem a esperança de reencontrar. E como se chama isso?
+Mediunidade, porque ela está captando uma força de cima para baixo e muitas vezes de baixo para cima.
+Os filhos pensam que se vive na Terra ou no mundo espiritual sozinho?
+Eh eh... quantas coisas vocês têm que aprender ainda, mas o mais belo é que vocês já estão no caminho.
+Paz de Deus. De pouco em pouco, o que se fez ontem hoje não se tem mais vontade. E o que vai fazer amanhã e na eternidade, o que será feito?
+A esperança do amor divino é isso.
+Paz de Deus, e Deus abençoa todos os filhos da Terra. E isso que o negro velho falou, você vai ter tempo de pensar, e o negro velho também vai ter esse tempo. E você pensa que o negro velho está sozinho quando traz a mensagem para os filhos?
+Muitos e muitos ficam felizes quando você sai de um lugar escuro e vem para a luz divina. É como se fala na Terra: aplausos mútuos. Ou seja, tanto os desencarnados como os encarnados se aplaudem mutuamente.
+Então, filho, sinta a alegria do aplauso mútuo.
+Pai Tomé, entendo que já foi explicado muito, mas esse espírito nos escuta então? (um familiar desencarnado)
+E muito, filho. Cada um tem um jeito de escutar, porque ouvir na mente é diferente de ouvir com os ouvidos.
+Pai, a saudade é tão grande.
+Filho, a diferença é muito grande, e é por isso que você precisa entender que entre você e Jesus não tem nada que possa ser tirado do seu devido lugar. Porque o pensamento que você envia para Jesus é de baixo para cima, e o pensamento que Jesus envia para você é do alto para baixo, e isso sem barreiras.
+Pai, quando oramos para Jesus, nada impede nosso pensamento de chegar até ele? É sem barreiras?
+Negro velho fica feliz quando você ajuda negro velho no esclarecer. Pense sempre nisso: vocês nunca estão sozinhos. E negro velho vai exemplificar.
+Pensa que quando você pensa, um fiozinho sai da sua mente e se liga na espiritualidade, a quem você deseja. E esse fiozinho leva e traz o pensamento e a resposta.
+Então, quando você sentir uma tristeza ou uma falta de entendimento, lembra desse fiozinho, e ele traz a resposta.
+Esse fiozinho tem nome, filhos. Ele é chamado de amor, porque ele liga você com a espiritualidade e liga a espiritualidade com você.
+Negro velho aprendeu e faz muito uso disso. E quando negro velho quer fazer o bem e não encontra todo recurso necessário, negro velho liga esse fiozinho e o recurso vem correndo.
+Negro velho está feliz porque foi lembrado que Jesus falou: "Onde houver um ou dois, ele lá estará". Então Jesus não está longe, ele está perto, e muito perto.
+Paz de Deus e Deus abençoe todos os filhos da Terra.
+`;
+
+    // Preenche o texto visível na tela
+    document.getElementById('message').textContent = messageText.trim();
+
+    let currentRate = 0.95;   // velocidade padrão (Normal)
+
+    function setSpeed(rate, btn) {
+      currentRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Se estiver tocando, reinicia do início com nova velocidade
+      if (speechSynthesis.speaking || speechSynthesis.paused) {
+        playMessage();
+      }
+    }
+
+    // ── Divide o texto em parágrafos para contornar o limite do Chrome ──
+    function getChunks() {
+      return messageText.trim()
+        .split('\n')
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+    }
+
+    let chunks      = [];
+    let chunkIndex  = 0;
+    let paused      = false;
+    let startTime   = null;
+    let estimatedDuration = 0;
+    let rafId       = null;
+
+    function getBestVoice() {
+      const voices = speechSynthesis.getVoices();
+      return voices.find(v => v.lang === 'pt-BR' && v.name.toLowerCase().includes('google'))
+          || voices.find(v => v.lang === 'pt-BR')
+          || voices.find(v => v.lang.startsWith('pt'))
+          || null;
+    }
+
+    function speakChunk(index) {
+      if (index >= chunks.length) {
+        paused = false;
+        stopBar();
+        updatePauseBtn();
+        return;
+      }
+      const utt = new SpeechSynthesisUtterance(chunks[index]);
+      utt.lang  = 'pt-BR';
+      utt.rate  = currentRate;
+      utt.pitch = 0.97;
+      const voice = getBestVoice();
+      if (voice) utt.voice = voice;
+
+      utt.onend = () => {
+        if (!paused) {
+          chunkIndex = index + 1;
+          speakChunk(chunkIndex);
+        }
+      };
+      utt.onerror = () => {
+        paused = false;
+        stopBar();
+        updatePauseBtn();
+      };
+      speechSynthesis.speak(utt);
+    }
+
+    function animateBar(duration) {
+      startTime = performance.now();
+      estimatedDuration = duration;
+      function step() {
+        const elapsed = performance.now() - startTime;
+        const pct = Math.min((elapsed / estimatedDuration) * 100, 100);
+        document.getElementById('readingBar').style.width = pct + '%';
+        if (pct < 100 && !paused) rafId = requestAnimationFrame(step);
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    function stopBar() {
+      cancelAnimationFrame(rafId);
+      document.getElementById('readingBar').style.width = '0%';
+    }
+
+    function playMessage() {
+      if (!('speechSynthesis' in window)) {
+        alert('Seu navegador não suporta leitura em voz alta. Tente abrir pelo Chrome.');
+        return;
+      }
+      speechSynthesis.cancel();
+      paused     = false;
+      chunks     = getChunks();
+      chunkIndex = 0;
+
+      const words = messageText.split(/\s+/).length;
+      const durationMs = (words / (130 * currentRate)) * 60 * 1000;
+      animateBar(durationMs);
+
+      speakChunk(0);
+      updatePauseBtn();
+    }
+
+    function pauseOrResume() {
+      if (!('speechSynthesis' in window)) return;
+      if (speechSynthesis.speaking && !paused) {
+        speechSynthesis.pause();
+        paused = true;
+        cancelAnimationFrame(rafId);
+      } else if (paused) {
+        speechSynthesis.resume();
+        paused = false;
+        const elapsed = performance.now() - startTime;
+        startTime = performance.now() - elapsed;
+        animateBar(estimatedDuration);
+      }
+      updatePauseBtn();
+    }
+
+    function stopMessage() {
+      speechSynthesis.cancel();
+      paused     = false;
+      chunkIndex = 0;
+      stopBar();
+      updatePauseBtn();
+    }
+
+    function updatePauseBtn() {
+      document.getElementById('pauseBtn').textContent = paused ? '▶ Continuar' : '⏸ Pausar';
+    }
+
+    speechSynthesis.onvoiceschanged = getBestVoice;
+  </script>
+</body>
+</html>
